@@ -18,13 +18,15 @@ jobs:
         node-version: 14
         
     - name: Install Newman
-      run: npm install -g newman
-      
+      run: |
+        npm install -g newman
+        npm install newman-reporter-html
+
     - name: Create Newman report directory
       run: mkdir newman
 
     - name: Run Postman tests
-      run: newman run COMPULIFEAPI.postman_collection.json -e COMPULIFE.postman_environment.json --reporters html,cli --reporter-html-export newman/report.html
+      run: newman run COMPULIFEAPI.postman_collection.json -e COMPULIFE.postman_environment.json --reporters html --reporter-html-export newman/report.html
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
