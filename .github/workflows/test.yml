@@ -21,7 +21,7 @@ jobs:
       run: npm install -g newman
 
     - name: Run Postman tests
-      run: newman run COMPULIFE API.postman_collection.json -e COMPULIFE.postman_environment.json
+      run: newman run COMPULIFEAPI.postman_collection.json -e COMPULIFE.postman_environment.json
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
