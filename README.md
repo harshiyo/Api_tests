@@ -24,3 +24,4 @@ npm test
 
 5. The test results will be generated in the `newman` folder in the form of a HTML report and will be attached as artifacts after each test run. To view the report, download the artifacts and open the Newman report.
 
+![Screenshot 2023-02-11 at 2 47 21 PM](https://user-images.githubusercontent.com/12981675/218278273-f208aad2-8ba7-490d-bb0a-e350f34f410c.png)
