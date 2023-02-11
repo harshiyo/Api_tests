@@ -22,4 +22,5 @@ npm install
 npm test
 ``` 
 
-5. The test results will be generated in the `newman` folder in the form of a HTML report.
+5. The test results will be generated in the `newman` folder in the form of a HTML report and will be attached as artifacts after each test run. To view the report, download the artifacts and open the Newman report.
+
