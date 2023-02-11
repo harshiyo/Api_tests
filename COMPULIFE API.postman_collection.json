@@ -1,0 +1,1379 @@
+{
+	"info": {
+		"_postman_id": "8ce96029-ded1-4eb9-84c8-462fee1841c1",
+		"name": "COMPULIFE API",
+		"description": "![image](https://compulife.com/wp-content/uploads/2020/04/api.jpg)\n\n## Getting Started\nThe easiest way to start using the COMPULIFE API is by clicking the **Run in Postman** button above. [Postman](https://www.getpostman.com/) is a free tool which helps developers run and debug API requests, and is the source for this documentation. Every endpoint you see documented here is readily available by running our Postman collection.\n\nCOMPULIFE API access requires a paid subscription. If you have already purchased access to our API, you can obtain your COMPULIFEAUTHORIZATIONID from your original API access email. If you are interested in subscribing to our API, please email us at [service@compulife.com](service@compulife.com) or call us at (888) 798-3488 or (888) 798-3488.\n\nIn addition to this Postman documentation, a paid subscription to the COMPULIFE API will include a package of example files to get you started.\n<br></br>\n## Need help?\nCOMPULIFE is available to answer your questions.  Please email us at [service@compulife.com](service@compulife.com) or call us at (800) 798-3488 or (888) 798-3488.\n<br></br>\n## IP Address Limits\nWe limit each subscriber using their IP address.  Only one IP address can be accessed using your API subscription.  If you need more than one IP address for API access, you will need additional subscription(s) per IP address(es).\n<br></br>\n## User Access Limits\nWith each quote, the REMOTE_IP of the user is required to be passed.  This value is passed so to avoid a single user from scraping your API access.  This limit will ensure that a single user cannot scrape your API access and will stop the user from accessing your API for 24 hours.\n<br></br>\n# Authorization\nFor requests that require authentication, simply send this value with your request.  Your authorization ID will automatically return data for the United States or Canada based on your subscription.  If you are doing business in both the US and Canada, please contact us for a second authorization ID.\n\n    COMPULIFEAUTHORIZATIONID: <YOUR_AUTHORIZATION_ID>",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11570578"
+	},
+	"item": [
+		{
+			"name": "Open API - United States",
+			"item": [
+				{
+					"name": "GET /api/ip",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"IPADDRESS\": {",
+									"            \"type\": \"string\",",
+									"            \"format\": \"ipv4\"",
+									"        }",
+									"    },",
+									"    \"required\": [\"IPADDRESS\"]",
+									"};",
+									"",
+									"var responseData = pm.response.json();",
+									"var validate = tv4.validate(responseData, schema);",
+									"",
+									"if (validate) {",
+									"    console.log(\"Response data is valid according to the JSON schema\");",
+									"    pm.test(\"JSON schema validation\", function () {",
+									"        pm.expect(validate).to.be.true;",
+									"    });",
+									"} else {",
+									"    console.log(\"Response data is invalid: \" + tv4.error.message);",
+									"    pm.test(\"JSON schema validation\", function () {",
+									"        pm.expect(validate).to.be.true;",
+									"    });",
+									"}",
+									"",
+									"",
+									"var expectedHeaderKey = \"Content-Type\";",
+									"var expectedHeaderValue = \"application/json; charset=UTF-8\";",
+									"",
+									"var actualHeaderValue = pm.response.headers.get(expectedHeaderKey);",
+									"",
+									"pm.test(\"Header validation\", function () {",
+									"    pm.expect(actualHeaderValue).to.equal(expectedHeaderValue);",
+									"});",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/ip/",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"ip",
+								""
+							]
+						},
+						"description": "Show your IP Address from this endpoint."
+					},
+					"response": [
+						{
+							"name": "GET /api/ip",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "curl/7.55.1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{compulife_domain}}/api/ip/",
+									"protocol": "https",
+									"host": [
+										"{{compulife_domain}}"
+									],
+									"path": [
+										"api",
+										"ip",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Jul 2020 17:01:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\"IPADDRESS\":\"YOUR_IP_ADDRESS\"}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/StateList",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/StateList/",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"StateList",
+								""
+							]
+						},
+						"description": "Retrieve available state values used by COMPULIFE from this endpoint."
+					},
+					"response": [
+						{
+							"name": "GET /api/StateList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "curl/7.55.1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{compulife_domain}}/api/StateList/",
+									"protocol": "https",
+									"host": [
+										"{{compulife_domain}}"
+									],
+									"path": [
+										"api",
+										"StateList",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"1\": \"Alabama\",\r\n    \"2\": \"Alaska\",\r\n    \"3\": \"Arizona\",\r\n    \"4\": \"Arkansas\",\r\n    \"5\": \"California\",\r\n    \"6\": \"Colorado\",\r\n    \"7\": \"Connecticut\",\r\n    \"8\": \"Delaware\",\r\n    \"9\": \"Dist.Columbia\",\r\n    \"10\": \"Florida\",\r\n    \"11\": \"Georgia\",\r\n    \"12\": \"Hawaii\",\r\n    \"13\": \"Idaho\",\r\n    \"14\": \"Illinois\",\r\n    \"15\": \"Indiana\",\r\n    \"16\": \"Iowa\",\r\n    \"17\": \"Kansas\",\r\n    \"18\": \"Kentucky\",\r\n    \"19\": \"Louisiana\",\r\n    \"20\": \"Maine\",\r\n    \"21\": \"Maryland\",\r\n    \"22\": \"Massachusetts\",\r\n    \"23\": \"Michigan\",\r\n    \"24\": \"Minnesota\",\r\n    \"25\": \"Mississippi\",\r\n    \"26\": \"Missouri\",\r\n    \"27\": \"Montana\",\r\n    \"28\": \"Nebraska\",\r\n    \"29\": \"Nevada\",\r\n    \"30\": \"New Hampshire\",\r\n    \"31\": \"New Jersey\",\r\n    \"32\": \"New Mexico\",\r\n    \"52\": \"NY Non-Bus\",\r\n    \"33\": \"NY Business\",\r\n    \"34\": \"North Carolina\",\r\n    \"35\": \"North Dakota\",\r\n    \"36\": \"Ohio\",\r\n    \"37\": \"Oklahoma\",\r\n    \"38\": \"Oregon\",\r\n    \"39\": \"Pennsylvania\",\r\n    \"40\": \"Rhode Island\",\r\n    \"41\": \"South Carolina\",\r\n    \"42\": \"South Dakota\",\r\n    \"43\": \"Tennessee\",\r\n    \"44\": \"Texas\",\r\n    \"45\": \"Utah\",\r\n    \"46\": \"Vermont\",\r\n    \"47\": \"Virginia\",\r\n    \"48\": \"Washington\",\r\n    \"49\": \"West Virginia\",\r\n    \"50\": \"Wisconsin\",\r\n    \"51\": \"Wyoming\",\r\n    \"53\": \"Guam\",\r\n    \"54\": \"Puerto Rico\",\r\n    \"55\": \"Virgin Islands\",\r\n    \"56\": \"Amer. Samoa\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/CompanyList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyList",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyList"
+							]
+						},
+						"description": "Retrieve all Life Companies that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": [
+						{
+							"name": "GET /api/CompanyList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "curl/7.55.1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{compulife_domain}}/api/CompanyList/",
+									"protocol": "https",
+									"host": [
+										"{{compulife_domain}}"
+									],
+									"path": [
+										"api",
+										"CompanyList",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 20 Jul 2020 20:20:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "3600"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"CompCode\": \"AAAL\",\n        \"Name\": \"AAA Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AAAL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AAAL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AAAL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ALLS\",\n        \"Name\": \"Allstate Life Insurance Co of New York\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ALLS-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ALLS-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ALLS-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMAM\",\n        \"Name\": \"American-Amicable Life Ins Co of TX\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMAM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMAM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMAM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMCN\",\n        \"Name\": \"American Continental Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMCN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMCN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMCN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMEM\",\n        \"Name\": \"American Memorial Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMEM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMEM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMEM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMEQ\",\n        \"Name\": \"American Equity Investment Life Ins Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMEQ-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMEQ-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMEQ-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMFI\",\n        \"Name\": \"American Fidelity Assurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMFI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMFI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMFI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMGE\",\n        \"Name\": \"American General Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMGE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMGE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMGE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMNT\",\n        \"Name\": \"American National Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMNT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMNT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMNT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMNX\",\n        \"Name\": \"American National Life Ins Company of TX\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMNX-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMNX-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMNX-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMNY\",\n        \"Name\": \"American National Life Ins Company of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMNY-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMNY-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMNY-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMPR\",\n        \"Name\": \"American Progressive Life & Health of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMPR-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMPR-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMPR-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMSU\",\n        \"Name\": \"American United Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMSU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMSU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMSU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMSV\",\n        \"Name\": \"Americo Financial Life and Annuity Ins.\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMSV-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMSV-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMSV-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMTA\",\n        \"Name\": \"Ameritas Life Insurance Corp\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMTA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMTA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMTA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMTX\",\n        \"Name\": \"Ameritas Life Insurance Corp  (FLX)\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMTX-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMTX-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMTX-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AMTY\",\n        \"Name\": \"Ameritas Life Insurance Corp of New York\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AMTY-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AMTY-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AMTY-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ASSU\",\n        \"Name\": \"Assurity Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ASSU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ASSU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ASSU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ATHE\",\n        \"Name\": \"Athene Life Insurance Company of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ATHE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ATHE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ATHE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"AURO\",\n        \"Name\": \"Aurora National Life Assurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/AURO-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/AURO-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/AURO-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"BALT\",\n        \"Name\": \"Baltimore Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/BALT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/BALT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/BALT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"BANK\",\n        \"Name\": \"Bankers Fidelity Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/BANK-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/BANK-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/BANK-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"BANN\",\n        \"Name\": \"Banner Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/BANN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/BANN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/BANN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"BOST\",\n        \"Name\": \"Boston Mutual Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/BOST-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/BOST-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/BOST-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CAPI\",\n        \"Name\": \"Capitol Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/CAPI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/CAPI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/CAPI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CETN\",\n        \"Name\": \"Centrian Life Insurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/CETN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/CETN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/CETN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CHRI\",\n        \"Name\": \"Christian Fidelity Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/CHRI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/CHRI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/CHRI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CINN\",\n        \"Name\": \"Cincinnati Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/CINN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/CINN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/CINN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"COLL\",\n        \"Name\": \"Columbian Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/COLL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/COLL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/COLL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"COLM\",\n        \"Name\": \"Columbian Mutual Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/COLM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/COLM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/COLM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"COLU\",\n        \"Name\": \"Columbus Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/COLU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/COLU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/COLU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"EMPL\",\n        \"Name\": \"EMC National Life Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/EMPL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/EMPL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/EMPL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"EQUF\",\n        \"Name\": \"Equitable Financial Life Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/EQUF-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/EQUF-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/EQUF-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"EQUI\",\n        \"Name\": \"Equitable Life & Casualty Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/EQUI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/EQUI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/EQUI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FAMI\",\n        \"Name\": \"Family Benefit Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/FAMI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/FAMI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/FAMI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FARM\",\n        \"Name\": \"Farmers New World Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/FARM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/FARM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/FARM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FEDE\",\n        \"Name\": \"Federal Life Insurance Company (Mutual)\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/FEDE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/FEDE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/FEDE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FIDL\",\n        \"Name\": \"Fidelity Life Association\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/FIDL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/FIDL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/FIDL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FORE\",\n        \"Name\": \"Forethought Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/FORE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/FORE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/FORE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"GERB\",\n        \"Name\": \"Gerber Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/GERB-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/GERB-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/GERB-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"GLEA\",\n        \"Name\": \"Gleaner Life Insurance Society\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/GLEA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/GLEA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/GLEA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"GOVE\",\n        \"Name\": \"Government Personnel Mutual Life Ins Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/GOVE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/GOVE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/GOVE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"GRAN\",\n        \"Name\": \"Grange Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/GRAN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/GRAN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/GRAN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"GUAR\",\n        \"Name\": \"Guardian Life Insurance Co of America\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/GUAR-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/GUAR-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/GUAR-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ILLI\",\n        \"Name\": \"Illinois Mutual Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ILLI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ILLI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ILLI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"INDE\",\n        \"Name\": \"Independent Order of Foresters\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/INDE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/INDE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/INDE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"JOHU\",\n        \"Name\": \"John Hancock Life Insurance Company USA\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/JOHU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/JOHU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/JOHU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"JOHY\",\n        \"Name\": \"John Hancock Life Insurance Company NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/JOHY-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/JOHY-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/JOHY-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"KENT\",\n        \"Name\": \"Kentucky Home Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/KENT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/KENT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/KENT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"LAFA\",\n        \"Name\": \"Lafayette Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/LAFA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/LAFA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/LAFA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"LIBB\",\n        \"Name\": \"Liberty Bankers Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/LIBB-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/LIBB-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/LIBB-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"LISW\",\n        \"Name\": \"Life Insurance Company of the Southwest\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/LISW-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/LISW-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/LISW-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"LNLI\",\n        \"Name\": \"Lincoln Life & Annuity Company of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/LNLI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/LNLI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/LNLI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"LNNA\",\n        \"Name\": \"Lincoln National Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/LNNA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/LNNA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/LNNA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MADI\",\n        \"Name\": \"Madison National Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MADI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MADI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MADI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MAHA\",\n        \"Name\": \"Massachusetts Mutual Life Ins (Haven)\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MAHA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MAHA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MAHA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MASM\",\n        \"Name\": \"Massachusetts Mutual Life Insurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MASM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MASM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MASM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MIDT\",\n        \"Name\": \"Midland National Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MIDT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MIDT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MIDT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MINM\",\n        \"Name\": \"Minnesota Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MINM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MINM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MINM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MOTO\",\n        \"Name\": \"Motorists Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MOTO-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MOTO-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MOTO-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MOUN\",\n        \"Name\": \"Mountain Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MOUN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MOUN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MOUN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MTRU\",\n        \"Name\": \"Mutual Trust Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/MTRU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/MTRU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/MTRU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NABE\",\n        \"Name\": \"National Benefit Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NABE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NABE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NABE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NASS\",\n        \"Name\": \"Nassau Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NASS-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NASS-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NASS-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NATI\",\n        \"Name\": \"National Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NATI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NATI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NATI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NATW\",\n        \"Name\": \"Nationwide Life and Annuity Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NATW-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NATW-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NATW-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NATY\",\n        \"Name\": \"Nationwide Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NATY-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NATY-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NATY-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NAWE\",\n        \"Name\": \"National Western Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NAWE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NAWE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NAWE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NEWY\",\n        \"Name\": \"New York Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NEWY-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NEWY-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NEWY-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NORA\",\n        \"Name\": \"North American Co for Life and Health\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NORA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NORA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NORA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"NORM\",\n        \"Name\": \"Northwestern Mutual Life Insurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/NORM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/NORM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/NORM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"OCCI\",\n        \"Name\": \"Occidental Life Ins Co of North Carolina\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/OCCI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/OCCI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/OCCI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"OHIN\",\n        \"Name\": \"Ohio National Life Assurance Corporation\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/OHIN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/OHIN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/OHIN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"OXFO\",\n        \"Name\": \"Oxford Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/OXFO-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/OXFO-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/OXFO-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PACI\",\n        \"Name\": \"Pacific Guardian Life Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PACI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PACI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PACI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PACL\",\n        \"Name\": \"Pacific Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PACL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PACL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PACL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PAUL\",\n        \"Name\": \"The Paul Revere Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PAUL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PAUL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PAUL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PENN\",\n        \"Name\": \"Penn Mutual Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PENN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PENN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PENN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRCU\",\n        \"Name\": \"Polish Roman Catholic Union of America\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRCU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRCU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRCU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRIM\",\n        \"Name\": \"Primerica Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRIM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRIM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRIM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRIN\",\n        \"Name\": \"Principal Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRIN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRIN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRIN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRIP\",\n        \"Name\": \"Principal National Life Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRIP-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRIP-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRIP-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PROA\",\n        \"Name\": \"Protective Life and Annuity Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PROA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PROA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PROA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PROT\",\n        \"Name\": \"Protective Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PROT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PROT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PROT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRTC\",\n        \"Name\": \"Provident Life and Accident Assurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRTC-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRTC-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRTC-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRUC\",\n        \"Name\": \"Pruco Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRUC-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRUC-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRUC-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRUJ\",\n        \"Name\": \"Pruco Life Insurance Co of New Jersey\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/PRUJ-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/PRUJ-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/PRUJ-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"RESE\",\n        \"Name\": \"Reserve National Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/RESE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/RESE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/RESE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ROYA\",\n        \"Name\": \"Royal Neighbors of America\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ROYA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ROYA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ROYA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SAGI\",\n        \"Name\": \"Sagicor Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SAGI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SAGI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SAGI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SAVE\",\n        \"Name\": \"Savings Bank Mutual Life Ins Co of MA\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SAVE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SAVE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SAVE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SBLI\",\n        \"Name\": \"SBLI USA Life Insurance Co Inc\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SBLI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SBLI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SBLI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SECU\",\n        \"Name\": \"Securian Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SECU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SECU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SECU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SEMU\",\n        \"Name\": \"Security Mutual Life Insurance Co of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SEMU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SEMU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SEMU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SENA\",\n        \"Name\": \"Security National Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SENA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SENA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SENA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SENS\",\n        \"Name\": \"Sentinel Security Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SENS-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SENS-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SENS-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SENT\",\n        \"Name\": \"Sentry Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SENT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SENT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SENT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"STAN\",\n        \"Name\": \"Standard Life and Accident Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/STAN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/STAN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/STAN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"STAR\",\n        \"Name\": \"Starmount Life Insurance Co.\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/STAR-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/STAR-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/STAR-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SUNS\",\n        \"Name\": \"Sunset Life Insurance Company of America\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SUNS-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SUNS-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SUNS-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SUSA\",\n        \"Name\": \"S.USA Life Insurance Company, Inc.\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SUSA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SUSA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SUSA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SYME\",\n        \"Name\": \"Symetra Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/SYME-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/SYME-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/SYME-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"THRI\",\n        \"Name\": \"Thrivent Financial for Lutherans\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/THRI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/THRI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/THRI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"TRAN\",\n        \"Name\": \"Transamerica Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/TRAN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/TRAN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/TRAN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"TRIN\",\n        \"Name\": \"Trinity Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/TRIN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/TRIN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/TRIN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"UTFA\",\n        \"Name\": \"United Farm Family Life Insurance Co\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/UTFA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/UTFA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/UTFA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"UTHE\",\n        \"Name\": \"United Heritage Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/UTHE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/UTHE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/UTHE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"UTHO\",\n        \"Name\": \"United Home Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/UTHO-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/UTHO-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/UTHO-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"UTOM\",\n        \"Name\": \"United of Omaha Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/UTOM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/UTOM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/UTOM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"UTST\",\n        \"Name\": \"United States Life Ins in the City of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/UTST-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/UTST-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/UTST-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"WILP\",\n        \"Name\": \"William Penn Life Insurance Co of NY\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/WILP-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/WILP-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/WILP-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"WOMA\",\n        \"Name\": \"Woman's Life Insurance Society\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/WOMA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/WOMA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/WOMA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ZURI\",\n        \"Name\": \"Zurich American Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ZURI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ZURI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ZURI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"ZURY\",\n        \"Name\": \"Zurich Life Insurance Co of New York\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapi/ZURY-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapi/ZURY-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapi/ZURY-large.png\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET /api/CompanyLogoList/all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoList/all",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoList",
+								"all"
+							]
+						},
+						"description": "Retrieve all Life Companies logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/CompanyLogoList/large",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoList/large",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoList",
+								"large"
+							]
+						},
+						"description": "Retrieve all Life Companies large logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/CompanyLogoList/medium",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoList/medium",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoList",
+								"medium"
+							]
+						},
+						"description": "Retrieve all Life Companies medium logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/CompanyLogoList/small",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoList/small",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoList",
+								"small"
+							]
+						},
+						"description": "Retrieve all Life Companies small logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Open API - Canada",
+			"item": [
+				{
+					"name": "GET /api/ip",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/ip/",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"ip",
+								""
+							]
+						},
+						"description": "Show your IP Address from this endpoint."
+					},
+					"response": [
+						{
+							"name": "GET /api/ip",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "curl/7.55.1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{compulife_domain}}/api/ip/",
+									"protocol": "https",
+									"host": [
+										"{{compulife_domain}}"
+									],
+									"path": [
+										"api",
+										"ip",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Jul 2020 17:02:27 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\"IPADDRESS\":\"YOUR_IP_ADDRESS\"}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/ProvinceList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/ProvinceList/",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"ProvinceList",
+								""
+							]
+						},
+						"description": "Retrieve available province values used by COMPULIFE (for Canada) from this endpoint."
+					},
+					"response": [
+						{
+							"name": "GET /api/ProvinceList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "curl/7.55.1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{compulife_domain}}/api/ProvinceList/",
+									"protocol": "https",
+									"host": [
+										"{{compulife_domain}}"
+									],
+									"path": [
+										"api",
+										"ProvinceList",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Apr 2020 20:34:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"1\": \"Alberta\",\r\n    \"2\": \"British Columbia\",\r\n    \"3\": \"Manitoba\",\r\n    \"4\": \"New Brunswick\",\r\n    \"5\": \"Newfoundland\",\r\n    \"6\": \"Nova Scotia\",\r\n    \"7\": \"Northwest Territories\",\r\n    \"8\": \"Nunavut\",\r\n    \"9\": \"Ontario\",\r\n    \"10\": \"Prince Edward Island\",\r\n    \"11\": \"Quebec\",\r\n    \"12\": \"Saskatchewan\",\r\n    \"13\": \"Yukon\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/CompanyListCanada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyListCanada/",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyListCanada",
+								""
+							]
+						},
+						"description": "Retrieve all Life Companies that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": [
+						{
+							"name": "GET /api/CompanyListCanada",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "curl/7.55.1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{compulife_domain}}/api/CompanyListCanada/",
+									"protocol": "https",
+									"host": [
+										"{{compulife_domain}}"
+									],
+									"path": [
+										"api",
+										"CompanyListCanada",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Jul 2020 22:21:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "3600"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"CompCode\": \"ASSU\",\n        \"Name\": \"Assumption Mutual Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/ASSU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/ASSU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/ASSU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"BLUE\",\n        \"Name\": \"Blue Cross Life Insurance Co of Canada\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/BLUE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/BLUE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/BLUE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"BMOL\",\n        \"Name\": \"BMO Life Assurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/BMOL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/BMOL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/BMOL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CANA\",\n        \"Name\": \"The Canada Life Assurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/CANA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/CANA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/CANA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CAPI\",\n        \"Name\": \"La Capitale\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/CAPI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/CAPI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/CAPI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"CUMI\",\n        \"Name\": \"CUMIS Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/CUMI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/CUMI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/CUMI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"DESJ\",\n        \"Name\": \"Desjardins Financial Security\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/DESJ-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/DESJ-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/DESJ-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"EMPI\",\n        \"Name\": \"The Empire Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/EMPI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/EMPI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/EMPI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"EQUI\",\n        \"Name\": \"Equitable Life Insurance Co of Canada\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/EQUI-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/EQUI-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/EQUI-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"EXCE\",\n        \"Name\": \"L'Excellence Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/EXCE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/EXCE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/EXCE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FAIT\",\n        \"Name\": \"FaithLife Financial\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/FAIT-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/FAIT-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/FAIT-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FORE\",\n        \"Name\": \"Foresters Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/FORE-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/FORE-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/FORE-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"FORP\",\n        \"Name\": \"Canada Protection Plan (Foresters Life)\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/FORP-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/FORP-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/FORP-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"HUMA\",\n        \"Name\": \"Humania Assurance Inc.\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/HUMA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/HUMA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/HUMA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"INDU\",\n        \"Name\": \"Industrial - Alliance Life Insurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/INDU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/INDU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/INDU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"INDV\",\n        \"Name\": \"Industrial - Alliance Life Insurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/INDV-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/INDV-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/INDV-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"MANU\",\n        \"Name\": \"The Manufacturers Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/MANU-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/MANU-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/MANU-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"PRIM\",\n        \"Name\": \"Primerica Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/PRIM-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/PRIM-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/PRIM-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"RBCL\",\n        \"Name\": \"RBC Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/RBCL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/RBCL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/RBCL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SHER\",\n        \"Name\": \"Sherbrooke Life\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/SHER-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/SHER-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/SHER-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SSQA\",\n        \"Name\": \"SSQ Insurance Company Inc.\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/SSQA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/SSQA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/SSQA-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"SUNL\",\n        \"Name\": \"Sun Life Assurance Company of Canada\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/SUNL-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/SUNL-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/SUNL-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"TRAN\",\n        \"Name\": \"ivari\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/TRAN-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/TRAN-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/TRAN-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"UVAS\",\n        \"Name\": \"UV Insurance\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/UVAS-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/UVAS-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/UVAS-large.png\"\n        }\n    },\n    {\n        \"CompCode\": \"WAWA\",\n        \"Name\": \"Wawanesa Life Insurance Company\",\n        \"Logos\": {\n            \"Small\": \"https://www.compulifeapi.com/images/logosapicanada/WAWA-small.png\",\n            \"Medium\": \"https://www.compulifeapi.com/images/logosapicanada/WAWA-medium.png\",\n            \"Large\": \"https://www.compulifeapi.com/images/logosapicanada/WAWA-large.png\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET /api/CompanyLogoListCanada/all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoListCanada/all",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoListCanada",
+								"all"
+							]
+						},
+						"description": "Retrieve all Life Companies logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/CompanyLogoListCanada/large",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoListCanada/large",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoListCanada",
+								"large"
+							]
+						},
+						"description": "Retrieve all Life Companies large logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/CompanyLogoListCanada/medium",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoListCanada/medium",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoListCanada",
+								"medium"
+							]
+						},
+						"description": "Retrieve all Life Companies medium logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/CompanyLogoListCanada/small",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{compulife_domain}}/api/CompanyLogoListCanada/small",
+							"protocol": "https",
+							"host": [
+								"{{compulife_domain}}"
+							],
+							"path": [
+								"api",
+								"CompanyLogoListCanada",
+								"small"
+							]
+						},
+						"description": "Retrieve all Life Companies small logos that are available to quote in COMPULIFE from this endpoint."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
